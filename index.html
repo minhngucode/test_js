@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styleindex.css">
+</head>
+<body>
+    <div class="form_register">
+        <div class="header">
+            Form Register
+        </div>
+        <div class="content_body">
+            <label for="place">Place</label>
+            <select name="" id="place">
+                <option value="100" id="dn">Da Nang</option>
+                <option value="150" id="hn">Ha Noi</option>
+                <option value="175" id="hcm">TP Ho Chi Minh</option>
+                <option value="200" id="pq">Phu Quoc</option>
+                <option value="135" id="qb">Quang Binh</option>
+            </select> <br>
+            <label for="numOfPeople">Number of people</label>
+            <input type="number" id="numOfPeople"> <br>
+            <label for="startDate">Start date</label>
+            <input type="date" id="startDate"> <br>
+            <label for="endDate">End date</label>
+            <input type="date" id="endDate">
+        </div>
+        <div class="button-group">
+            <button class="btn-submit" onclick="calTotal()">
+                Submit
+            </button>
+            <button class="btn-refresh" onclick="resetForm()">
+                Refresh
+            </button>
+        </div>
+        <div class="total">
+            <p id="total">Total amount: 0$</p>
+        </div>
+    </div>
+    <p>---------------------------------------------------------------------</p>
+    <div class="calculator" style="width: 20%; background-color: lightgray; text-align:center">
+        Result: <input id="result" style="text-align: end;">
+        <br>
+        <button onclick="append('1')">1</button>
+        <button onclick="append('2')">2</button>
+        <button onclick="append('3')">3</button><br>
+        <button onclick="append('4')">4</button>
+        <button onclick="append('5')">5</button>
+        <button onclick="append('6')">6</button><br>
+        <button onclick="append('7')">7</button>
+        <button onclick="append('8')">8</button>
+        <button onclick="append('9')">9</button><br>
+        <button onclick="append('0')">0</button><br>
+        <button onclick="append('+')">+</button>
+        <button onclick="append('-')">-</button>
+        <button onclick="append('*')">*</button>
+        <button onclick="append('^')">^</button>
+        <button onclick="append('/')">/</button><br>
+        <button onclick="calculate()">=</button>
+    </div>
+    <script src="./test.js"></script>
+    <script>
+        let result = document.getElementById('result');
+        function append(value){
+            result.value += value;
+        }
+        function calculate() {
+            let expression = result.value;
+            if (expression.includes('^')) {
+                let parts = expression.split('^');
+                result.value = Math.pow(parseFloat(parts[0]), parseFloat(parts[1]));
+            } else {
+                result.value = eval(expression);
+            }
+        }
+        
+    </script>
+    <p>---------------------------------------------------------------------</p>
+    
+</body>
+</html>
